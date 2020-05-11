@@ -3,6 +3,8 @@ import AppStyles from '@styles/AppStyles';
 import { View, Text, FlatList } from 'react-native';
 import TranslationService from '@services/TranslationService';
 import moment from 'moment';
+import AvatarTitle from '@components/AvatarTitle';
+import AvatarSubTitle from '@components/AvatarSubTitle';
 
 const MatchList = ({ matchList, teamId }) => {
 
@@ -10,30 +12,23 @@ const MatchList = ({ matchList, teamId }) => {
     const rivalTeam = (item.homeTeam.id !== teamId) ?
       item.homeTeam : item.awayTeam
     return (
-      <>
-        <Text>{TranslationService.get('rival-team')}</Text>
-        <Text>{rivalTeam.name}</Text>
-        <Text>{TranslationService.get('data')}</Text>
-        <Text>{moment(item.utcDate).format('DD-MM-YYYY')}</Text>
-        <Text>{TranslationService.get('competition')}</Text>
-        <Text>{item.competition.name}</Text>
-      </>)
+      <View style={{ flexDirection: 'row', paddingVertical:10, justifyContent:'space-between' }}>
+        <View>
+          <AvatarTitle style={{fontWeight:'bold'}}>{rivalTeam.name}</AvatarTitle>
+          <AvatarTitle>{item.competition.name}</AvatarTitle>
+        </View>
+        <View style={{alignSelf:''}}>
+          <AvatarSubTitle>{moment(item.utcDate).format('DD/MM/YYYY')}</AvatarSubTitle>
+        </View>
+      </View>)
   };
 
   return (
-    <>
-      <Text style={{ fontWeight: 'bold', fontSize: 16, paddingVertical: 10 }}>
-        {TranslationService.get('match-list-top-10')(matchList?.length)}
-      </Text>
-      <Text>
-
-      </Text>
-      <FlatList
-        data={matchList}
-        renderItem={({ item, index, separators }) => renderItem({ item })}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    </>
+    <FlatList
+      data={matchList}
+      renderItem={({ item, index, separators }) => renderItem({ item })}
+      keyExtractor={(item, index) => index.toString()}
+    />
   );
 };
 

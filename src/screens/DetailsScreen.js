@@ -9,6 +9,7 @@ import Avatar from '@components/Avatar';
 import PlayerList from '@components/PlayerList';
 import MatchList from '@components/MatchList';
 import Icon from 'react-native-vector-icons/Ionicons';
+import DetailsTabNavigator from '@routes/DetailsTabNavigator';
 
 const _DetailsScreen = ({
   route,
@@ -58,36 +59,19 @@ const _DetailsScreen = ({
           name={team.name}
           containerStyle={{ alignSelf: 'center', width: 150, height: 150 }}
           assetStyle={{ width: 150, height: 150 }}
-          placeholder={<Icon name={'md-football'} size={150} color={'green'}/>}
+          placeholder={<Icon name={'md-football'} size={150} color={'green'} />}
         />
-        <View style={[
-          AppStyles.card,
-          { maxHeight: '30%', flexGrow: 1 }
-        ]}>
-          <PlayerList playerList={playerList} />
-        </View>
-        <View style={[
-          AppStyles.card,
-          { maxHeight: '40%', flexGrow: 2 }
-        ]}>
-          <MatchList
-            matchList={matchList}
-            teamId={team.id}
-          />
-        </View>
+        <DetailsTabNavigator
+          playerListLength={playerList.length}
+          matchListLength={matchList.length}
+          matchList={matchList}
+          teamId={team.id}
+          playerList={playerList}
+        />
       </SafeAreaView>
     </>
   )
 }
-const renderSvg = ({ imageUrl }) => (
-  <View style={AppStyles.avatarContainer}>
-    <SvgUri
-      width={50}
-      height={50}
-      uri={imageUrl}
-    />
-  </View>
-);
 
 const props = ({ football: { playerList, matchList } }) => ({
   playerList,

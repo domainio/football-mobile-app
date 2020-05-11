@@ -6,10 +6,11 @@ import FootballActions from '@actions/FootballActions';
 import { View, Text, SafeAreaView, StatusBar } from 'react-native';
 import TeamList from '@components/TeamList';
 import Spinner from '@components/Spinner';
+import VSpaceSeparator from '@components/VSpaceSeparator';
 
 const _HomeScreen = ({ getAllTeams, teamList }) => {
 
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const getAllTeamsAsync = async () => {
@@ -25,15 +26,19 @@ const _HomeScreen = ({ getAllTeams, teamList }) => {
     }
   }, [teamList])
 
-  // if (isLoading) {
-  // return (<View><Spinner /></View>)
-  // }
+  if (isLoading) {
+    return (
+      <View>
+        <VSpaceSeparator height={20} />
+        <Spinner />
+      </View>)
+  }
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={AppStyles.screen}>
-        <TeamList
+      <TeamList
           teamList={teamList}
         />
       </SafeAreaView>

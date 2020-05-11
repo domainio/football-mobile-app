@@ -14,6 +14,10 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from '@store/reducers';
 
+import Icon from 'react-native-vector-icons/MaterialIcons'
+
+Icon.loadFont();
+
 const store = createStore(
   reducers,
   applyMiddleware(

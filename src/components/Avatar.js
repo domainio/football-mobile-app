@@ -9,7 +9,6 @@ const Avatar = ({
   name,
   containerStyle,
   assetStyle,
-  initialsContainerStyle,
   placeholder,
 }) => {
 
