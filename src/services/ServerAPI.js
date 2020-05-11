@@ -18,7 +18,7 @@ const fetchTeamPlayers = (teamId) => {
   return axiosInstance.get(`/teams/${teamId}`);
 }
 
-const fetchTeamFutureMatches = (teamId) => {
+const fetchTeamFutureMatches = (teamId, limit = 10) => {
   return axiosInstance.get(`/teams/${teamId}/matches?status=${MatchStatuses.Scheduled}&limit=${limit}`);
 }
 
