@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Text, View, FlatList, TouchableNativeFeedback, Image } from 'react-native';
+import { Text, View, FlatList, TouchableNativeFeedback, Image, AppState } from 'react-native';
 import ScreenNames from '@constants/ScreenNames';
 import NavService from '@services/NavService';
 import Avatar from '@components/Avatar';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-let counter = 0;
+import AppStyles from '@styles/AppStyles';
 
 const TeamList = ({ teamList }) => {
   return (
@@ -20,7 +19,6 @@ const TeamList = ({ teamList }) => {
 };
 
 const renderItem = ({ item }) => {
-  counter = counter + 1;
   const onPressItem = () => {
     NavService.navigate(ScreenNames.Details, { team: item });
   }
@@ -28,10 +26,10 @@ const renderItem = ({ item }) => {
     <TouchableNativeFeedback 
       onPress={onPressItem}
     >
-      <View style={{ height: 70, flexDirection: 'row', alignItems: 'center', justifyContent:'space-between', padding: 15 }}>      
+      <View style={AppStyles.teamListItemContainer}>      
       <View style={{flexDirection: 'row'}}>
         <Avatar
-          imageUrl={counter < 22 ? item.crestUrl : ''} 
+          imageUrl={item.crestUrl} 
           name={item.name}
         />
         <View style={{  justifyContent: 'center',paddingLeft:15 }}>

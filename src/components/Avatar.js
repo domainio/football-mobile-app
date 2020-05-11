@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Image } from 'react-native';
 import AppStyles from '@styles/AppStyles';
 import StringUtil from '@utils/StringUtil';
@@ -11,6 +11,8 @@ const Avatar = ({
   assetStyle,
   placeholder,
 }) => {
+
+  const [isLoading, setLoading] = useState(true);
 
   const renderSvg = () => (
     <View style={[AppStyles.avatarContainer, containerStyle]}>
@@ -54,20 +56,49 @@ const Avatar = ({
     </View>
   )
 
+  const checkImageUri = (uri) => {
+    return fetch(uri)
+      .then(res => {
+        if (res.status !== 404) {
+          return true;
+        }
+        return false;
+      })
+      .catch(err => {
+        console.log(err)
+        return false;
+      })
+  }
+
+  useEffect(() => {
+    if (!!imageUrl) {
+      setLoading(true);
+      const fetchAsync = async () => {
+        await checkImageUri(imageUrl);
+        setLoading(false);
+      };
+      fetchAsync();
+    } else {
+      setLoading(false)
+    }
+  }, [])
   let renderFn;
-  if (!imageUrl && placeholder) {
+
+  if (!!imageUrl && !isLoading) {
+    if (StringUtil.isSvgUri(imageUrl)) {
+      renderFn = () => renderSvg({ imageUrl });
+    } else {
+      renderFn = () => renderImage(imageUrl);
+    }
+  } else if (!imageUrl && placeholder) {
     renderFn = () => renderPlaceholder();
   } else if (!imageUrl) {
     renderFn = () => renderInitials({ name });
-  } else if (!!imageUrl && StringUtil.isSvgUri(imageUrl)) {
-    renderFn = () => renderSvg({ imageUrl });
-  } else if (!!imageUrl) {
-    renderFn = () => renderImage(imageUrl);
   }
-
+  if (!renderFn) {
+    return null;
+  }
   return renderFn()
 };
-
-
 
 export default Avatar;

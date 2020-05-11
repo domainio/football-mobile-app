@@ -34,45 +34,6 @@ const getTeamPlayers = ({ teamId }) => async (dispatch) => {
   }
 }
 
-const getCompetitionTeams = ({ competitionId }) => async (dispatch) => {
-  dispatch({ type: ActionTypes.getCompetitionTeamStart });
-  try {
-    const response = await ServerAPI.fetchCompetitionTeams(competitionId);
-    const { teams } = response
-    // dispatch({ type: ActionTypes.getComÎpetitionTeamSuccess, team });
-  } catch (err) {
-    console.log(err);
-    dispatch({ type: ActionTypes.getCompetitionTeamFail });
-  }
-}
-
-const _filterActiveCompetitions = (allCompetitions) => {
-  const activeCompetitions = allCompetitions.map(competition => {
-    const test1 = !moment(competition.currentSeason.endDate).isBefore(moment(), "day");
-    const test2 = moment(competition.currentSeason.endDate).isAter(moment(), "day");
-    const test3 = moment().diff(competition.currentSeason.endDate, 'days');
-    return !!test3
-  })
-  return activeCompetitions;
-}
-
-const getAllCompetitions = () => async (dispatch) => {
-  dispatch({ type: ActionTypes.getAllCompetitionsStart });
-  try {
-    const response = await ServerAPI.fetchAllCompetitions();
-    const { data: { competitions: allCompetitions } } = response;
-    // localStorage.setItem('allCompetitions', JSON.stringify(allCompetitions));
-    const activeCompetitions = _filterActiveCompetitions(allCompetitions);
-    competitionList.map(competition => {
-      console.log(competition)
-    })
-    dispatch({ type: ActionTypes.getAllCompetitionsSuccess, competitionList: activeCompetitions });
-  } catch (err) {
-    console.log(err);
-    dispatch({ type: ActionTypes.getAllCompetitionsFail });
-  }
-}
-
 const getTeamFutureMatches = ({ teamId }) => async (dispatch) => {
   dispatch({ type: ActionTypes.getTeamFutureMatchesStart });
   try {
@@ -92,8 +53,6 @@ const cleanupTeamStore = ()  => async (dispatch) => {
 
 export default {
   getAllTeams,
-  getAllCompetitions,
-  getCompetitionTeams,
   getTeamPlayers,
   getTeamFutureMatches,
   cleanupTeamStore,

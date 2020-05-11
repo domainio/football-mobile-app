@@ -11,12 +11,14 @@ import ScreenNames from '@constants/ScreenNames';
 const SPACE_HEIGHT = (Platform.OS === 'ios') ? 40 : 20;
 
 const SplashScreen = () => {
+
   useEffect(() => {
     setTimeout(() => {
       SplashScreenProvider.hide();
       NavService.reset([{ name: ScreenNames.Home }])
     }, 2000);
   }, []);
+  
   return (
     <>
       <StatusBar barStyle="dark-content" />

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ScreenNames from '@constants/ScreenNames';
@@ -10,10 +9,7 @@ import SplashScreen from '@screens/SplashScreen';
 import TranslationService from '@services/TranslationService';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-
-
 const Stack = createStackNavigator();
-
 
 const RootNavigator = () => {
   return (

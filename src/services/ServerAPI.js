@@ -14,14 +14,6 @@ const fetchAllTeams = () => {
   return axiosInstance.get(`/teams`);
 }
 
-const fetchAllCompetitions = () => {
-  return axiosInstance.get('/competitions')
-}
-
-const fetchCompetitionTeams = () => {
-  return axiosInstance.get(`/competitions/${id}/teams`);
-}
-
 const fetchTeamPlayers = (teamId) => {
   return axiosInstance.get(`/teams/${teamId}`);
 }
@@ -35,8 +27,6 @@ const fetchTeamFutureMatches = (teamId) => {
 
 export default {
   fetchAllTeams,
-  fetchAllCompetitions,
-  fetchCompetitionTeams,
   fetchTeamPlayers,
   fetchTeamFutureMatches,
 }

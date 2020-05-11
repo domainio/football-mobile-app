@@ -11,10 +11,10 @@ const AppStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: 50,
-    height: 50,    
+    height: 50,
   },
   avatarInitialsContainer: {
-    backgroundColor:'#dddfe2',
+    backgroundColor: '#dddfe2',
   },
   avatarInitialText: {
     fontSize: 18,
@@ -27,16 +27,20 @@ const AppStyles = StyleSheet.create({
   vSpaceSeparator: {
     height: 10,
   },
-  vLineSeparatorBorderColor:{
-    color:'#dddfe2',
-  },
-  card:{
+  card: {
     borderColor: 'lightgray',
     borderWidth: 1,
     backgroundColor: 'ghostwhite',
-    padding:10,
-    margin:10,
-    borderRadius:5
+    padding: 10,
+    margin: 10,
+    borderRadius: 5
+  },
+  teamListItemContainer: {
+    height: 70,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 15
   }
 });
 
