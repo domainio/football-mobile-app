@@ -1,15 +1,12 @@
 import ServerAPI from '@services/ServerAPI';
 import ActionTypes from '@constants/ActionTypes';
-import fake_all_teams from '@constants/fake_all_teams';
 import TeamRoels from '@constants/TeamRoles';
-import fake_matches from '@constants/fake_matches';
 
 const getAllTeams = () => async (dispatch) => {
   dispatch({ type: ActionTypes.getAllTeamsStart });
   try {
-    // const response = await ServerAPI.fetchAllTeams();
-    // const { data: { teams: teamList } } = response;
-    const { teams: teamList } = fake_all_teams;
+    const response = await ServerAPI.fetchAllTeams();
+    const { data: { teams: teamList } } = response;
     dispatch({ type: ActionTypes.getAllTeamsSuccess, teamList });
   } catch (err) {
     console.log(err);
@@ -37,9 +34,8 @@ const getTeamPlayers = ({ teamId }) => async (dispatch) => {
 const getTeamFutureMatches = ({ teamId }) => async (dispatch) => {
   dispatch({ type: ActionTypes.getTeamFutureMatchesStart });
   try {
-    // const response = await ServerAPI.fetchTeamFutureMatches(teamId);
-    // const { data: { matches } } = response;
-    const {matches: matchList} = fake_matches;
+    const response = await ServerAPI.fetchTeamFutureMatches(teamId);
+    const { data: { matches: matchList } } = response;
     dispatch({ type: ActionTypes.getTeamFutureMatchesSuccess, matchList });
   } catch (err) {
     console.log(err);

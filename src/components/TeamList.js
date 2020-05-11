@@ -29,7 +29,7 @@ const renderItem = ({ item }) => {
       <View style={AppStyles.teamListItemContainer}>      
       <View style={{flexDirection: 'row'}}>
         <Avatar
-          imageUrl={item.crestUrl} 
+          imageUrl={''} 
           name={item.name}
         />
         <View style={{  justifyContent: 'center',paddingLeft:15 }}>
