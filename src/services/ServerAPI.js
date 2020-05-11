@@ -19,10 +19,7 @@ const fetchTeamPlayers = (teamId) => {
 }
 
 const fetchTeamFutureMatches = (teamId) => {
-  return axiosInstance.get(`/teams/${teamId}/matches`, {
-    status: MatchStatuses.Scheduled,
-    limit: 10,
-  });
+  return axiosInstance.get(`/teams/${teamId}/matches?status=${MatchStatuses.Scheduled}&limit=${limit}`);
 }
 
 export default {
