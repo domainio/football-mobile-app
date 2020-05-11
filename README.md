@@ -10,4 +10,4 @@
 ## Caveats
 * Some images of football API are corrupted.
 * Some images are svg while other png.
-* Throtelling API by definition (!)
+* Throttling API by definition (!)
