@@ -5,8 +5,7 @@
 1. clone
 2. yarn
 3. cd ios && pod install && cd ..
-4. react-native link react-native-vector-icons
-5. launch!
+4. launch!
 
 ## Caveats
 * Some images of football API are corrupted.
