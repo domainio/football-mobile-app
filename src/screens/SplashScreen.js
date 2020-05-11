@@ -6,6 +6,7 @@ import NavService from '@services/NavService';
 import Spinner from '@components/Spinner';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import VSpaceSeparator from '@components/VSpaceSeparator';
+import ScreenNames from '@constants/ScreenNames';
 
 const SPACE_HEIGHT = (Platform.OS === 'ios') ? 40 : 20;
 
@@ -13,7 +14,7 @@ const SplashScreen = () => {
   useEffect(() => {
     setTimeout(() => {
       SplashScreenProvider.hide();
-      NavService.reset()
+      NavService.reset([{ name: ScreenNames.Home }])
     }, 2000);
   }, []);
   return (
